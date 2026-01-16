@@ -27,23 +27,33 @@ Usage:
     Prints out the license files linked to the SPDX License Identifier.
     If [-o] is specified, it will also try to write it to that directory.
 
-    -spdx=<id>  SPDX license identifier. (default: MPL-2.0)
-    -o=<dir>    Output directory.
-    -d          Dry-run flag, will print the write locations.
+    -spdx=<id> SPDX license identifier. (default: MPL-2.0)
+    -o=<dir>   Output directory.
+    -d         Dry-run flag, will print the write locations.
 
   %[1]s check [-spdx] [-p] [-r] [-d]
     Checks if all files in the given path have a license header.
+    Will look for '.license.header' otherwise, [-n] and [-c] need to be specified.
 
-    -spdx=<id>  SPDX license identifier. (default: MPL-2.0)
-    -p=<path>   The path to check, can be either a file or directory (with -r).
-    -r          Whether to recursively walk the directory.
-    -d          Dry-run flag, will print error but not exit(1).
+    -spdx=<id> SPDX license identifier. (default: MPL-2.0)
+    -p=<path>  The path to check, can be either a file or directory (with -r).
+    -r         Whether to recursively walk the directory.
+    -d         Dry-run flag, will print error but not exit(1).
+
+    -n=<name>  Project name.
+    -y=<year>  Year. (default: {current year})
+    -c=<copy>  Copyright holder.
 
   %[1]s run [-spdx] [-p] [-r] [-d]
     Writes license headers to files that don't have one yet.
+    Will look for '.license.header' otherwise, [-n] and [-c] need to be specified.
 
-    -spdx=<id>  SPDX license identifier. (default: MPL-2.0)
-    -p=<path>   The path to check, can be either a file or directory (with -r).
-    -r          Whether to recursively walk the directory.
-    -d          Dry-run flag, will print error but not write the headers.
+    -spdx=<id> SPDX license identifier. (default: MPL-2.0)
+    -p=<path>  The path to check, can be either a file or directory (with -r).
+    -r         Whether to recursively walk the directory.
+    -d         Dry-run flag, will print error but not write the headers.
+
+    -n=<name>  Project name.
+    -y=<year>  Year. (default: {current year})
+    -c=<copy>  Copyright holder.
 `

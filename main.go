@@ -125,22 +125,32 @@ func main() {
 		flags.BoolVar(&recursive, "r", false, "")
 		var dryRun bool
 		flags.BoolVar(&dryRun, "d", false, "")
+		var year uint64
+		flags.Uint64Var(&year, "y", uint64(time.Now().Year()), "Year")
+		var copyright string
+		flags.StringVar(&copyright, "c", "", "Copyright Holder")
+		var name string
+		flags.StringVar(&name, "n", "", "Project Name")
 
 		if err := flags.Parse(os.Args[2:]); err != nil {
 			log.Fatalf("invalid options, run '%s help' for more information", name)
 		}
 
+		var licenseRef []byte
 		stat, err := os.Stat(LICENSE_HEADER_PATH)
 		if err != nil {
-			log.Fatalf("%q not found: %v", LICENSE_HEADER_PATH, err)
-		}
-		if stat.IsDir() {
-			log.Fatalf("%q not found", LICENSE_HEADER_PATH)
-		}
-
-		licenseRef, err := os.ReadFile(LICENSE_HEADER_PATH)
-		if err != nil {
-			log.Fatalf("could not open file %q: %v", LICENSE_HEADER_PATH, err)
+			if copyright == "" || name == "" {
+				log.Fatalf("%q not found: %v", LICENSE_HEADER_PATH, err)
+			}
+			header := spdx.LicenseIdentifier(licenseIdentifier).Header(int(year), copyright, name)
+			licenseRef = []byte(wrap.Wrap(strings.TrimSpace(header), LINE_WIDTH))
+		} else {
+			if stat.IsDir() {
+				log.Fatalf("%q not found", LICENSE_HEADER_PATH)
+			}
+			if licenseRef, err = os.ReadFile(LICENSE_HEADER_PATH); err != nil {
+				log.Fatalf("could not open file %q: %v", LICENSE_HEADER_PATH, err)
+			}
 		}
 
 		dir, file, err := splitDir(path)
@@ -190,22 +200,32 @@ func main() {
 		flags.BoolVar(&recursive, "r", false, "")
 		var dryRun bool
 		flags.BoolVar(&dryRun, "d", false, "")
+		var year uint64
+		flags.Uint64Var(&year, "y", uint64(time.Now().Year()), "Year")
+		var copyright string
+		flags.StringVar(&copyright, "c", "", "Copyright Holder")
+		var name string
+		flags.StringVar(&name, "n", "", "Project Name")
 
 		if err := flags.Parse(os.Args[2:]); err != nil {
 			log.Fatalf("invalid options, run '%s help' for more information", name)
 		}
 
+		var licenseRef []byte
 		stat, err := os.Stat(LICENSE_HEADER_PATH)
 		if err != nil {
-			log.Fatalf("%q not found: %v", LICENSE_HEADER_PATH, err)
-		}
-		if stat.IsDir() {
-			log.Fatalf("%q not found", LICENSE_HEADER_PATH)
-		}
-
-		licenseRef, err := os.ReadFile(LICENSE_HEADER_PATH)
-		if err != nil {
-			log.Fatalf("could not open file %q: %v", LICENSE_HEADER_PATH, err)
+			if copyright == "" || name == "" {
+				log.Fatalf("%q not found: %v", LICENSE_HEADER_PATH, err)
+			}
+			header := spdx.LicenseIdentifier(licenseIdentifier).Header(int(year), copyright, name)
+			licenseRef = []byte(wrap.Wrap(strings.TrimSpace(header), LINE_WIDTH))
+		} else {
+			if stat.IsDir() {
+				log.Fatalf("%q not found", LICENSE_HEADER_PATH)
+			}
+			if licenseRef, err = os.ReadFile(LICENSE_HEADER_PATH); err != nil {
+				log.Fatalf("could not open file %q: %v", LICENSE_HEADER_PATH, err)
+			}
 		}
 
 		dir, file, err := splitDir(path)
