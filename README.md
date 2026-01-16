@@ -3,7 +3,7 @@
 `go-license-header` is a simple CLI tool for checking and generating license headers in Go files. It supports MPL, GPL, LGPL and AGPL licenses.
 
 
-```sh
+```text
 go-license-header checks and generates license headers in Go files.
 
 Usage:
@@ -23,7 +23,7 @@ Usage:
     If [-o] is specified, it will also try to write it to that directory.
 
     -spdx=<id>  SPDX license identifier. (default: MPL-2.0)
-        -o=<dir>    Output directory.
+    -o=<dir>    Output directory.
     -d          Dry-run flag, will print the write locations.
 
   go-license-header check [-spdx] [-p] [-r] [-d]

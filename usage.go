@@ -28,7 +28,7 @@ Usage:
     If [-o] is specified, it will also try to write it to that directory.
 
     -spdx=<id>  SPDX license identifier. (default: MPL-2.0)
-        -o=<dir>    Output directory.
+    -o=<dir>    Output directory.
     -d          Dry-run flag, will print the write locations.
 
   %[1]s check [-spdx] [-p] [-r] [-d]
