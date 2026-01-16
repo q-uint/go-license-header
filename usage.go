@@ -1,20 +1,11 @@
-// SPDX-License-Identifier: LGPL-3.0-or-later
+// SPDX-License-Identifier: MPL-2.0
 
 // Copyright (c) 2026 Quint Daenen.
 // This file is part of go-license-header.
 //
-// go-license-header is free software: you can redistribute it and/or modify it
-// under the terms of the GNU Lesser Public License as published by the Free
-// Software Foundation, either version 3 of the License, or (at your option) any
-// later version.
-//
-// go-license-header is distributed in the hope that it will be useful, but
-// WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
-// FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser Public License for more
-// details.
-//
-// You should have received a copy of the GNU Lesser Public License along with
-// go-license-header. If not, see <https://www.gnu.org/licenses/>.
+// This Source Code Form is subject to the terms of the Mozilla Public License,
+// v. 2.0. If a copy of the MPL was not distributed with this file, You can
+// obtain one at https://mozilla.org/MPL/2.0/.
 
 package main
 
@@ -27,7 +18,7 @@ Usage:
   %[1]s header [-spdx] -n [-y] -c
     Prints out an example *GPL file header.
 
-    -spdx=<id> SPDX license identifier. (default: LGPL-3.0-or-later)
+    -spdx=<id> SPDX license identifier. (default: MPL-2.0)
     -n=<name>  Project name. (required)
     -y=<year>  Year. (default: {current year})
     -c=<copy>  Copyright holder. (required)
@@ -36,14 +27,14 @@ Usage:
     Prints out the license files linked to the SPDX License Identifier.
     If [-o] is specified, it will also try to write it to that directory.
 
-    -spdx=<id>  SPDX license identifier. (default: LGPL-3.0-or-later)
+    -spdx=<id>  SPDX license identifier. (default: MPL-2.0)
         -o=<dir>    Output directory.
     -d          Dry-run flag, will print the write locations.
 
   %[1]s check [-spdx] [-p] [-r] [-d]
     Checks if all files in the given path have a license header.
 
-    -spdx=<id>  SPDX license identifier. (default: LGPL-3.0-or-later)
+    -spdx=<id>  SPDX license identifier. (default: MPL-2.0)
     -p=<path>   The path to check, can be either a file or directory (with -r).
     -r          Whether to recursively walk the directory.
     -d          Dry-run flag, will print error but not exit(1).
@@ -51,7 +42,7 @@ Usage:
   %[1]s run [-spdx] [-p] [-r] [-d]
     Writes license headers to files that don't have one yet.
 
-    -spdx=<id>  SPDX license identifier. (default: LGPL-3.0-or-later)
+    -spdx=<id>  SPDX license identifier. (default: MPL-2.0)
     -p=<path>   The path to check, can be either a file or directory (with -r).
     -r          Whether to recursively walk the directory.
     -d          Dry-run flag, will print error but not write the headers.

@@ -1,20 +1,11 @@
-// SPDX-License-Identifier: LGPL-3.0-or-later
+// SPDX-License-Identifier: MPL-2.0
 
 // Copyright (c) 2026 Quint Daenen.
 // This file is part of go-license-header.
 //
-// go-license-header is free software: you can redistribute it and/or modify it
-// under the terms of the GNU Lesser Public License as published by the Free
-// Software Foundation, either version 3 of the License, or (at your option) any
-// later version.
-//
-// go-license-header is distributed in the hope that it will be useful, but
-// WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
-// FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser Public License for more
-// details.
-//
-// You should have received a copy of the GNU Lesser Public License along with
-// go-license-header. If not, see <https://www.gnu.org/licenses/>.
+// This Source Code Form is subject to the terms of the Mozilla Public License,
+// v. 2.0. If a copy of the MPL was not distributed with this file, You can
+// obtain one at https://mozilla.org/MPL/2.0/.
 
 package spdx
 
@@ -24,7 +15,9 @@ import (
 	"fmt"
 )
 
-// You can find all licenses here: https://ftp.gnu.org/gnu/Licenses
+// You can find all licenses here:
+// - https://www.mozilla.org/media/MPL/2.0/index.txt
+// - https://ftp.gnu.org/gnu/Licenses
 //
 //go:embed licenses
 var licenses embed.FS
@@ -33,6 +26,7 @@ type LicenseIdentifier string
 
 var (
 	None        LicenseIdentifier = ""
+	MPL2        LicenseIdentifier = "MPL-2.0"
 	GPL2        LicenseIdentifier = "GPL-2.0-only"
 	GPL2Later   LicenseIdentifier = "GPL-2.0-or-later"
 	GPL3        LicenseIdentifier = "GPL-3.0-only"
@@ -47,6 +41,8 @@ var (
 
 func (l LicenseIdentifier) name() (string, error) {
 	switch l {
+	case MPL2:
+		return "Mozilla Public License", nil
 	case GPL2, GPL2Later, GPL3, GPL3Later:
 		return "GNU General Public License", nil
 	case LGPL21, LGPL21Later, LGPL3, LGPL3Later:
@@ -79,6 +75,8 @@ func (l LicenseIdentifier) version() (string, error) {
 
 func (l LicenseIdentifier) path() (string, error) {
 	switch l {
+	case MPL2:
+		return "mpl-2.0.txt", nil
 	case GPL2, GPL2Later:
 		return "gpl-2.0.txt", nil
 	case GPL3, GPL3Later:
@@ -99,6 +97,18 @@ func (l LicenseIdentifier) Identifier() string {
 }
 
 func (l LicenseIdentifier) Header(year int, copyright, name string) string {
+	if l == MPL2 {
+		return fmt.Sprintf(`
+		Copyright (c) %d %s.
+		This file is part of %s.
+		
+		This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0. If a copy of the MPL was not distributed with this file, You can obtain one at https://mozilla.org/MPL/2.0/.
+	`,
+			year, copyright,
+			name,
+		)
+	}
+
 	licenseName, _ := l.name()
 	version, _ := l.version()
 	return fmt.Sprintf(`

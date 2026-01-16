@@ -1,20 +1,11 @@
-// SPDX-License-Identifier: LGPL-3.0-or-later
+// SPDX-License-Identifier: MPL-2.0
 
 // Copyright (c) 2026 Quint Daenen.
 // This file is part of go-license-header.
 //
-// go-license-header is free software: you can redistribute it and/or modify it
-// under the terms of the GNU Lesser Public License as published by the Free
-// Software Foundation, either version 3 of the License, or (at your option) any
-// later version.
-//
-// go-license-header is distributed in the hope that it will be useful, but
-// WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
-// FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser Public License for more
-// details.
-//
-// You should have received a copy of the GNU Lesser Public License along with
-// go-license-header. If not, see <https://www.gnu.org/licenses/>.
+// This Source Code Form is subject to the terms of the Mozilla Public License,
+// v. 2.0. If a copy of the MPL was not distributed with this file, You can
+// obtain one at https://mozilla.org/MPL/2.0/.
 
 package main
 
@@ -59,7 +50,7 @@ func main() {
 		flags := flag.NewFlagSet("", flag.ContinueOnError)
 
 		var licenseIdentifier string
-		flags.StringVar(&licenseIdentifier, "spdx", "LGPL-3.0-or-later", "SPDX License Identifier")
+		flags.StringVar(&licenseIdentifier, "spdx", "MPL-2.0", "SPDX License Identifier")
 		var year uint64
 		flags.Uint64Var(&year, "y", uint64(time.Now().Year()), "Year")
 		var copyright string
@@ -84,7 +75,7 @@ func main() {
 		flags := flag.NewFlagSet("", flag.ContinueOnError)
 
 		var licenseIdentifier string
-		flags.StringVar(&licenseIdentifier, "spdx", "LGPL-3.0-or-later", "SPDX License Identifier")
+		flags.StringVar(&licenseIdentifier, "spdx", "MPL-2.0", "SPDX License Identifier")
 		var out string
 		flags.StringVar(&out, "o", "", "")
 		var dryRun bool
@@ -109,6 +100,8 @@ func main() {
 				log.Fatalf("%q is not a dir", out)
 			}
 			switch id := spdx.LicenseIdentifier(licenseIdentifier); id {
+			case spdx.MPL2:
+				writeLicense(id, path.Join(out, "LICENSE"), dryRun)
 			case spdx.LGPL21, spdx.LGPL21Later:
 				writeLicense(id, path.Join(out, "COPYING.LESSER"), dryRun)
 				writeLicense(spdx.GPL2, path.Join(out, "COPYING"), dryRun)
@@ -125,7 +118,7 @@ func main() {
 		flags := flag.NewFlagSet("", flag.ContinueOnError)
 
 		var licenseIdentifier string
-		flags.StringVar(&licenseIdentifier, "spdx", "LGPL-3.0-or-later", "")
+		flags.StringVar(&licenseIdentifier, "spdx", "MPL-2.0", "")
 		var path string
 		flags.StringVar(&path, "p", ".", "")
 		var recursive bool
@@ -190,7 +183,7 @@ func main() {
 		flags := flag.NewFlagSet("", flag.ContinueOnError)
 
 		var licenseIdentifier string
-		flags.StringVar(&licenseIdentifier, "spdx", "LGPL-3.0-or-later", "")
+		flags.StringVar(&licenseIdentifier, "spdx", "MPL-2.0", "")
 		var path string
 		flags.StringVar(&path, "p", ".", "")
 		var recursive bool
