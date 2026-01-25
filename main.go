@@ -105,10 +105,10 @@ func main() {
 			case spdx.LGPL21, spdx.LGPL21Later:
 				writeLicense(id, path.Join(out, "COPYING.LESSER"), dryRun)
 				writeLicense(spdx.GPL2, path.Join(out, "COPYING"), dryRun)
-			case spdx.LGPL3, spdx.LGPL3Later, spdx.AGPL3, spdx.AGPL3Later:
+			case spdx.LGPL3, spdx.LGPL3Later:
 				writeLicense(id, path.Join(out, "COPYING.LESSER"), dryRun)
 				writeLicense(spdx.GPL3, path.Join(out, "COPYING"), dryRun)
-			case spdx.GPL2, spdx.GPL2Later, spdx.GPL3, spdx.GPL3Later:
+			case spdx.GPL2, spdx.GPL2Later, spdx.GPL3, spdx.GPL3Later, spdx.AGPL3, spdx.AGPL3Later:
 				writeLicense(id, path.Join(out, "COPYING"), dryRun)
 			default:
 				log.Fatalf("unsupported SPDX License Identifier: %q", licenseIdentifier)

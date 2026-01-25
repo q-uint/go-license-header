@@ -52,3 +52,17 @@ Usage:
     -y=<year>  Year. (default: {current year})
     -c=<copy>  Copyright holder.
 ```
+
+## SPDX-License-Identifiers
+
+- MPL-2.0
+- GPL-2.0-only
+- GPL-2.0-or-later
+- GPL-3.0-only
+- GPL-3.0-or-later
+- LGPL-2.1-only
+- LGPL-2.1-or-later
+- LGPL-3.0-only
+- LGPL-3.0-or-later
+- AGPL-3.0-only
+- AGPL-3.0-or-later
